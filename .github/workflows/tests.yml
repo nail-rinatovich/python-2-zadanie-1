@@ -21,7 +21,10 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run tests
-        run: python -m pytest -v | tee pytest-output.txt
+        shell: bash
+        run: |
+          set -o pipefail
+          python -m pytest -v | tee pytest-output.txt
 
       - name: Summary
         if: always()
